@@ -1,0 +1,80 @@
+.fltr-node {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.fltr-node canvas {
+    width: 100%;
+    border-radius: 4px;
+}
+
+.fltr-node .settings {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.fltr-node .settings h1 {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-weight: lighter;
+    color: rgb(200, 200, 200);
+    text-align: center;
+}
+
+.fltr-node .settings hr {
+    height: 1px;
+    border: 0;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+}
+
+.fltr-node .control {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    text-align: center;
+}
+
+.fltr-node .control label {
+    display: block;
+    margin-bottom: 8px;
+    color: rgb(150, 150, 150);
+    text-transform: uppercase;
+    font-size: 0.75em;
+    transition: all 0.3s;
+}
+
+.fltr-node .control:hover label {
+    color: rgb(255, 114, 131);
+}
+
+.fltr-node .control input {
+    width: 75%;
+}
+
+/* Filter range control */
+/* TODO: Add support for IE and Firefox */
+
+.fltr-node .control input[type=range] {
+    -webkit-appearance: none;
+}
+
+.fltr-node .control input[type=range]::-webkit-slider-runnable-track {
+    height: 16px;
+    background-color: rgb(242, 242, 242);
+    border: none;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.fltr-node .control input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    border: 2px solid rgb(255, 114, 131);
+    background-color: #fff;
+    transition: all 0.3s;
+}
+
+.fltr-node .control:hover input[type=range]::-webkit-slider-runnable-track {
+    background-color: rgb(255, 114, 131);
+}

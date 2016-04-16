@@ -1,0 +1,57 @@
+.fltr-add {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.fltr-add input[type=checkbox] {
+    display: none;
+}
+
+.fltr-add input[type=checkbox]:checked ~ .content-collapsed {
+    display: none;
+}
+
+.fltr-add .content-disclosed {
+    display: none;
+    height: 100px;
+}
+
+.fltr-add input[type=checkbox]:checked ~ .content-disclosed {
+    display: block;
+    top: 0px;
+}
+
+/* "Add filter" button */
+
+.fltr-add .button-add {
+    height: 80px;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.fltr-add .button-add svg {
+    display: inline-block;
+    position: relative;
+    top: 8px;
+    margin-right: 12px;
+    fill: rgb(220, 220, 220);
+    transition: all 0.3s;
+}
+
+.fltr-add .button-add span {
+    display: inline-block;
+    line-height: 80px;
+    font-size: 2em;
+    font-weight: lighter;
+    color: rgb(190, 190, 190);
+    transition: all 0.3s;
+}
+
+.fltr-add .button-add:hover svg {
+    fill: rgb(255, 114, 131);
+}
+
+.fltr-add .button-add:hover span {
+    color: rgb(255, 114, 131);
+}
