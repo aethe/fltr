@@ -11,12 +11,12 @@
     display: none;
 }
 
-.fltr-add .content-disclosed {
+.fltr-add .content-expanded {
     display: none;
     height: 100px;
 }
 
-.fltr-add input[type=checkbox]:checked ~ .content-disclosed {
+.fltr-add input[type=checkbox]:checked ~ .content-expanded {
     display: block;
     top: 0px;
 }
