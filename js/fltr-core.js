@@ -13,10 +13,7 @@ Color.prototype.getRelativeLuminance = function() {
 
 // Filter
 
-function Filter() {
-    // Every filter should support the intensity value
-    this.intensity = 1; /* 0...1 */
-}
+function Filter() { }
 
 Filter.prototype.process = function(imageData) { }
 
@@ -40,17 +37,11 @@ BasicFilter.prototype.process = function(imageData) {
         // Process the color
         this.processPixel(color);
 
-        // Read the color data back and apply intensity
-        red = Math.round(color.red * this.intensity + red * (1 - this.intensity));
-        green = Math.round(color.green * this.intensity + green * (1 - this.intensity));
-        blue = Math.round(color.blue * this.intensity + blue * (1 - this.intensity));
-        alpha = Math.round(color.alpha * this.intensity + alpha * (1 - this.intensity));
-
         // Write the result back
-        imageData.data[i] = red;
-        imageData.data[i + 1] = green;
-        imageData.data[i + 2] = blue;
-        imageData.data[i + 3] = alpha;
+        imageData.data[i] = color.red;
+        imageData.data[i + 1] = color.green;
+        imageData.data[i + 2] = color.blue;
+        imageData.data[i + 3] = color.alpha;
     }
 }
 
@@ -87,4 +78,36 @@ GrayscaleFilter.prototype.processPixel = function(color) {
     color.red = relativeLuminance;
     color.green = relativeLuminance;
     color.blue = relativeLuminance;
+}
+
+// FadeFilter
+
+function FadeFilter() {
+    this.strength = 0.25;
+    this.shadowColor = new Color(128, 128, 128, 1);
+    this.exponent = 3;
+}
+
+FadeFilter.prototype = new BasicFilter();
+
+FadeFilter.prototype.processPixel = function(color) {
+    var red = color.red * (1 - this.strength) + this.shadowColor.red * this.strength;
+    var green = color.green * (1 - this.strength) + this.shadowColor.green * this.strength;
+    var blue = color.blue * (1 - this.strength) + this.shadowColor.blue * this.strength;
+
+    var t = 1 - color.getRelativeLuminance() / 255;
+    t = Math.pow(t, this.exponent);
+    color.red = color.red * (1 - t) + red * t;
+    color.green = color.green * (1 - t) + green * t;
+    color.blue = color.blue * (1 - t) + blue * t;
+}
+
+// TestFilter
+
+function TestFilter() { }
+
+TestFilter.prototype = new BasicFilter();
+
+TestFilter.prototype.processPixel = function(color) {
+    
 }
