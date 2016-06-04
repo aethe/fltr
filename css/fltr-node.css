@@ -1,16 +1,36 @@
 .fltr-node {
     padding-top: 16px;
     padding-bottom: 16px;
+    transition: opacity 0.25s;
 }
 
-.fltr-node canvas {
+.fltr-node.invalid {
+    opacity: 0.1;
+}
+
+.fltr-node .content canvas {
     width: 100%;
     border-radius: 4px;
+}
+
+.fltr-node .content .drop {
+    width: 100%;
+    height: 160px;
+    border-radius: 4px;
+    background-color: rgb(242, 242, 242);
 }
 
 .fltr-node .settings {
     padding-top: 12px;
     padding-bottom: 12px;
+}
+
+.fltr-node .settings p {
+    text-align: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: rgb(200, 200, 200);
+    font-style: italic;
 }
 
 .fltr-node .settings h1 {
@@ -27,13 +47,13 @@
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
 }
 
-.fltr-node .control {
+.fltr-node .settings .control {
     padding-top: 16px;
     padding-bottom: 16px;
     text-align: center;
 }
 
-.fltr-node .control label {
+.fltr-node .settings .control label {
     display: block;
     margin-bottom: 8px;
     color: rgb(150, 150, 150);
@@ -42,22 +62,22 @@
     transition: all 0.3s;
 }
 
-.fltr-node .control:hover label {
+.fltr-node .settings .control:hover label {
     color: rgb(255, 114, 131);
 }
 
-.fltr-node .control input {
+.fltr-node .settings .control input {
     width: 100%;
 }
 
 /* Filter range control */
 /* TODO: Add support for IE and Firefox */
 
-.fltr-node .control input[type=range] {
+.fltr-node .settings .control input[type=range] {
     -webkit-appearance: none;
 }
 
-.fltr-node .control input[type=range]::-webkit-slider-runnable-track {
+.fltr-node .settings .control input[type=range]::-webkit-slider-runnable-track {
     height: 16px;
     background-color: rgb(242, 242, 242);
     border: none;
@@ -65,7 +85,7 @@
     transition: all 0.3s;
 }
 
-.fltr-node .control input[type=range]::-webkit-slider-thumb {
+.fltr-node .settings .control input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 16px;
     height: 16px;
@@ -75,6 +95,6 @@
     transition: all 0.3s;
 }
 
-.fltr-node .control:hover input[type=range]::-webkit-slider-runnable-track {
+.fltr-node .settings .control:hover input[type=range]::-webkit-slider-runnable-track {
     background-color: rgb(255, 114, 131);
 }

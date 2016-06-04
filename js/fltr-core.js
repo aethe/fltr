@@ -64,16 +64,16 @@ GrayscaleFilter.prototype.processPixel = function(color) {
 
 function FadeFilter() {
     this.strength = 0.25;
-    this.shadowColor = new Color(128, 128, 128, 1);
     this.exponent = 3;
+    this.brightness = 128;
 }
 
 FadeFilter.prototype = new BasicFilter();
 
 FadeFilter.prototype.processPixel = function(color) {
-    var red = color.red * (1 - this.strength) + this.shadowColor.red * this.strength;
-    var green = color.green * (1 - this.strength) + this.shadowColor.green * this.strength;
-    var blue = color.blue * (1 - this.strength) + this.shadowColor.blue * this.strength;
+    var red = color.red * (1 - this.strength) + this.brightness * this.strength;
+    var green = color.green * (1 - this.strength) + this.brightness * this.strength;
+    var blue = color.blue * (1 - this.strength) + this.brightness * this.strength;
 
     var t = 1 - color.getRelativeLuminance() / 255;
     t = Math.pow(t, this.exponent);
