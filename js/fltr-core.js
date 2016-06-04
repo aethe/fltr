@@ -47,26 +47,6 @@ BasicFilter.prototype.process = function(imageData) {
 
 BasicFilter.prototype.processPixel = function(color) { }
 
-// ConvolutionFilter
-
-function ConvolutionFilter() {
-    this.kernel = [];
-}
-
-ConvolutionFilter.prototype = new Filter();
-
-ConvolutionFilter.prototype.process = function(imageData) {
-    // TODO
-}
-
-ConvolutionFilter.prototype.processPixel = function(color, colorMatrix) {
-    // TODO
-}
-
-ConvolutionFilter.prototype.convolve = function(color, colorMatrix) {
-    // TODO
-}
-
 // GrayscaleFilter
 
 function GrayscaleFilter() { }
@@ -109,5 +89,5 @@ function TestFilter() { }
 TestFilter.prototype = new BasicFilter();
 
 TestFilter.prototype.processPixel = function(color) {
-    
+
 }

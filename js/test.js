@@ -1,13 +1,3 @@
-// Node ------------------------------------------------------------------------
-
-function Node() {
-    this.previous = null;
-    this.next = null;
-
-    // Reactive
-    this.disposeBag = new Rx.CompositeDisposable();
-}
-
 // Playground ------------------------------------------------------------------
 
 function setupDragAndDrop() {
@@ -44,10 +34,7 @@ function runTest() {
     // image.src = "http://www.geforce.com/sites/default/files-world/screenshots/elder-scrolls-v-skyrim/screenshot-8.jpg";
     // image.src = "http://arkantophotography.eu/wp-content/uploads/2013/10/Russian-woods.jpg";
     // image.src = "http://www.gameslayer.org/articles/Beautiful_Skyrim_Screenshots_Collection_One-5/gslayer-skyrim-screenshot-002.jpg";
-    // image.src = "http://cs635100.vk.me/v635100859/7c2c/SzpWW39j-V8.jpg";
-    // image.src = "http://vignette2.wikia.nocookie.net/elderscrolls/images/e/e5/Azura_Concept.jpg/revision/latest?cb=20111208213733";
-    // image.src = "http://tespedia.ru/images/base/0/4/windhelm.jpg";
-    image.src = "http://gamingmemoirs.co.uk/wp-content/uploads/2012/07/The-Elder-Scrolls-V-Skyrim-Screenshot.jpg";
+    image.src = "http://cs635100.vk.me/v635100859/7c2c/SzpWW39j-V8.jpg";
 
     image.onload = function() {
         canvas.width = image.width;
@@ -73,6 +60,12 @@ function runTest() {
         // testFilter.process(imageData);
         // context.putImageData(imageData, 0, 0);
     }
+
+    var grid = document.querySelector(".grid");
+    var grayscaleNode = new GrayscaleNode();
+    grid.appendChild(grayscaleNode.view);
+    var fadeNode = new FadeNode();
+    grid.appendChild(fadeNode.view);
 
     canvas.addEventListener("click", function(event) {
         window.location.href = canvas.toDataURL();
