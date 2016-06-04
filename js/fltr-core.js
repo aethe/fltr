@@ -81,13 +81,3 @@ FadeFilter.prototype.processPixel = function(color) {
     color.green = color.green * (1 - t) + green * t;
     color.blue = color.blue * (1 - t) + blue * t;
 }
-
-// TestFilter
-
-function TestFilter() { }
-
-TestFilter.prototype = new BasicFilter();
-
-TestFilter.prototype.processPixel = function(color) {
-
-}

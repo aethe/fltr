@@ -98,32 +98,59 @@ function RootNode() {
     this.dropView.className = "drop";
     this.contentView.appendChild(this.dropView);
 
+    // Add upload icon
+    var uploadIcon = document.createElement("img");
+    uploadIcon.src = "img/upload.png";
+    this.dropView.appendChild(uploadIcon);
+
+    // Add label
+    var label = document.createElement("h1");
+    label.innerHTML = "Drag&Drop your image or use the file upload.";
+    this.dropView.appendChild(label);
+
+    // Add upload button
+    var uploadButton = document.createElement("input");
+    uploadButton.type = "file";
+    uploadButton.addEventListener("change", function() {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var image = new Image();
+            image.onload = function() {
+                this.renderImage(image);
+            }.bind(this);
+            image.src = event.target.result;
+        }.bind(this);
+        reader.readAsDataURL(event.target.files[0]);
+    }.bind(this), false);
+    this.dropView.appendChild(uploadButton);
+
     // Add canvas
     this.canvas = null;
 
     // Add description
     var description = document.createElement("p");
-    description.innerHTML = "Drag and drop your image.";
+    description.innerHTML = "Upload your image.";
     this.settingsView.appendChild(description);
 }
 
 RootNode.prototype = new Node();
 
-RootNode.prototype.showCanvas = function() {
-    // Don't do anything if already showing canvas
-    if (this.canvas) {
-        return;
-    }
-
+RootNode.prototype.renderImage = function(image) {
     // Remove drop field
-    if (this.dropView) {
-        this.contentView.removeChild(this.dropView);
-        this.dropView = null;
-    }
+    this.contentView.removeChild(this.dropView);
+    this.dropView = null;
 
     // Add canvas
     this.canvas = document.createElement("canvas");
     this.contentView.appendChild(this.canvas);
+
+    // Load image into the canvas
+    this.canvas.width = image.width;
+    this.canvas.height = image.height;
+    this.canvas.getContext("2d").drawImage(image, 0, 0);
+
+    // Update the next node
+    this.next.update(); // TODO: Remove later, when the default filters are removed
 }
 
 // FilterNode
