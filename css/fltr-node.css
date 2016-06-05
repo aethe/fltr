@@ -1,16 +1,16 @@
 .fltr-node {
     padding-top: 16px;
     padding-bottom: 16px;
-    transition: opacity 0.3s;
 }
 
 .fltr-node.invalid {
-    opacity: 0.1;
+
 }
 
 .fltr-node .content canvas {
     width: 100%;
     border-radius: 4px;
+    background-color: rgb(246, 246, 246);
 }
 
 .fltr-node .content .drop {

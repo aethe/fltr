@@ -32,3 +32,26 @@ header h1 {
     width: 960px;
     margin: 0 auto;
 }
+
+/* Footer */
+
+footer {
+    margin-bottom: 128px;
+}
+
+footer button {
+    display: block;
+    margin: 16px auto;
+    padding: 16px;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: normal;
+    background-color: rgb(255, 114, 131);
+    border: none;
+}
+
+footer button:hover {
+    background-color: rgb(230, 103, 118);
+}

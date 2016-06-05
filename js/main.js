@@ -32,4 +32,14 @@ function main() {
     document.getElementById("add-fade").addEventListener("click", function() {
         filterList.appendFilterNode(new FadeNode());
     });
+
+    var downloadButton = document.getElementById("download");
+    downloadButton.addEventListener("click", function() {
+        var canvas = filterList.tailNode.canvas;
+        if (!canvas) {
+            return;
+        }
+
+        window.open(canvas.toDataURL("image/jpeg"));
+    }, false);
 }
