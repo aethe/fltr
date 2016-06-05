@@ -220,6 +220,24 @@ function GrayscaleNode() {
 
 GrayscaleNode.prototype = new FilterNode(new GrayscaleFilter());
 
+// InvertNode
+
+function InvertNode() {
+    this.loadView();
+    this.titleView.innerHTML = "Invert";
+
+    // Create canvas
+    this.canvas = document.createElement("canvas");
+    this.contentView.appendChild(this.canvas);
+
+    // Add description
+    var description = document.createElement("p");
+    description.innerHTML = "Invert filter inverts colors of your image.";
+    this.settingsView.appendChild(description);
+}
+
+InvertNode.prototype = new FilterNode(new InvertFilter());
+
 // FadeNode
 
 function FadeNode() {

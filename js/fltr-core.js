@@ -60,6 +60,18 @@ GrayscaleFilter.prototype.processPixel = function(color) {
     color.blue = relativeLuminance;
 }
 
+// InvertFilter
+
+function InvertFilter() { }
+
+InvertFilter.prototype = new BasicFilter();
+
+InvertFilter.prototype.processPixel = function(color) {
+    color.red = 255 - color.red;
+    color.green = 255 - color.green;
+    color.blue = 255 - color.blue;
+}
+
 // FadeFilter
 
 function FadeFilter() {

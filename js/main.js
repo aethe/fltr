@@ -25,6 +25,10 @@ function main() {
         filterList.appendFilterNode(new GrayscaleNode());
     });
 
+    document.getElementById("add-invert").addEventListener("click", function() {
+        filterList.appendFilterNode(new InvertNode());
+    });
+
     document.getElementById("add-fade").addEventListener("click", function() {
         filterList.appendFilterNode(new FadeNode());
     });
