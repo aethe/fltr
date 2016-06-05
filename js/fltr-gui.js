@@ -96,11 +96,33 @@ function RootNode() {
     // Add drop field
     this.dropView = document.createElement("div");
     this.dropView.className = "drop";
+    this.dropView.draggable = true;
     this.contentView.appendChild(this.dropView);
+
+    this.dropView.addEventListener("dragenter", function(event) {
+        event.preventDefault();
+        this.dropView.classList.add("dragging");
+    }.bind(this), false);
+
+    this.dropView.addEventListener("dragover", function(event) {
+        event.preventDefault();
+    }.bind(this), false);
+
+    this.dropView.addEventListener("dragleave", function(event) {
+        event.preventDefault();
+        this.dropView.classList.remove("dragging");
+    }.bind(this), false);
+
+    this.dropView.addEventListener("drop", function(event) {
+        event.preventDefault();
+        var reader = new FileReader();
+        reader.onload = this.onFileReaderLoad.bind(this);
+        reader.readAsDataURL(event.dataTransfer.files[0]);
+        this.dropView.classList.remove("dragging");
+    }.bind(this), false);
 
     // Add upload icon
     var uploadIcon = document.createElement("img");
-    uploadIcon.src = "img/upload.png";
     this.dropView.appendChild(uploadIcon);
 
     // Add label
@@ -111,15 +133,9 @@ function RootNode() {
     // Add upload button
     var uploadButton = document.createElement("input");
     uploadButton.type = "file";
-    uploadButton.addEventListener("change", function() {
+    uploadButton.addEventListener("change", function(event) {
         var reader = new FileReader();
-        reader.onload = function(event) {
-            var image = new Image();
-            image.onload = function() {
-                this.renderImage(image);
-            }.bind(this);
-            image.src = event.target.result;
-        }.bind(this);
+        reader.onload = this.onFileReaderLoad.bind(this);
         reader.readAsDataURL(event.target.files[0]);
     }.bind(this), false);
     this.dropView.appendChild(uploadButton);
@@ -134,6 +150,14 @@ function RootNode() {
 }
 
 RootNode.prototype = new Node();
+
+RootNode.prototype.onFileReaderLoad = function(event) {
+    var image = new Image();
+    image.onload = function() {
+        this.renderImage(image);
+    }.bind(this);
+    image.src = event.target.result;
+}
 
 RootNode.prototype.renderImage = function(image) {
     // Remove drop field
