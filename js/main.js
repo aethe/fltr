@@ -1,14 +1,31 @@
-function main() {
-    // Load root node
-    var grid = document.querySelector(".grid");
-    var rootNode = new RootNode();
-    grid.appendChild(rootNode.view);
+function FilterList() {
+    // Find the filter collection
+    this.filterAdd = document.querySelector(".fltr-add");
 
-    // Load some default filters
-    var fadeNode = new FadeNode();
-    grid.appendChild(fadeNode.view);
-    rootNode.append(fadeNode);
-    var grayscaleNode = new GrayscaleNode();
-    grid.appendChild(grayscaleNode.view);
-    fadeNode.append(grayscaleNode);
+    // Load root node
+    this.grid = document.querySelector(".grid");
+    this.rootNode = new RootNode();
+    this.grid.insertBefore(this.rootNode.view, this.filterAdd);
+
+    // Keep track of the tail
+    this.tailNode = this.rootNode;
+}
+
+FilterList.prototype.appendFilterNode = function(filterNode) {
+    this.tailNode.append(filterNode);
+    this.tailNode = filterNode;
+    this.grid.insertBefore(filterNode.view, this.filterAdd);
+    filterNode.update();
+}
+
+function main() {
+    var filterList = new FilterList();
+
+    document.getElementById("add-grayscale").addEventListener("click", function() {
+        filterList.appendFilterNode(new GrayscaleNode());
+    });
+
+    document.getElementById("add-fade").addEventListener("click", function() {
+        filterList.appendFilterNode(new FadeNode());
+    });
 }

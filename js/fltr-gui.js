@@ -150,7 +150,9 @@ RootNode.prototype.renderImage = function(image) {
     this.canvas.getContext("2d").drawImage(image, 0, 0);
 
     // Update the next node
-    this.next.update(); // TODO: Remove later, when the default filters are removed
+    if (this.next) {
+        this.next.update();
+    }
 }
 
 // FilterNode
@@ -248,6 +250,9 @@ function FadeNode() {
         this.update();
     }.bind(this));
     this.settingsView.appendChild(brightnessRange.view);
+
+    // Insert separator
+    this.settingsView.appendChild(document.createElement("hr"));
 
     // Add description
     var description = document.createElement("p");
