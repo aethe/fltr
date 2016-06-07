@@ -40,6 +40,15 @@ function main() {
             return;
         }
 
-        window.open(canvas.toDataURL("image/jpeg"));
+        if (window.navigator.userAgent.indexOf("Edge") > -1) {
+            // Display the image on the same page in Edge
+            var edgeResultImage = document.getElementById("edge-result");
+            edgeResultImage.src = canvas.toDataURL("image/jpeg");
+        } else {
+            // For other browsers open the image in a new tab
+            window.open(canvas.toDataURL("image/jpeg"));
+
+        }
+
     }, false);
 }
