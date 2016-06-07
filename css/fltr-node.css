@@ -114,10 +114,13 @@
 }
 
 /* Filter range control */
-/* TODO: Add support for IE and Firefox */
 
 .fltr-node .settings .control input[type=range] {
     -webkit-appearance: none;
+}
+
+.fltr-node .settings .control input[type=range]:focus {
+    outline-width: 0;
 }
 
 .fltr-node .settings .control input[type=range]::-webkit-slider-runnable-track {
@@ -139,5 +142,53 @@
 }
 
 .fltr-node .settings .control:hover input[type=range]::-webkit-slider-runnable-track {
+    background-color: rgb(255, 114, 131);
+}
+
+/* Firefox fix */
+
+.fltr-node .settings .control input[type=range]::-moz-range-track {
+    height: 16px;
+    background-color: rgb(242, 242, 242);
+    border: none;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.fltr-node .settings .control input[type=range]::-moz-range-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 8px;
+    border: 2px solid rgb(255, 114, 131);
+    background-color: #fff;
+    transition: all 0.3s;
+}
+
+.fltr-node .settings .control:hover input[type=range]::-moz-range-track {
+    background-color: rgb(255, 114, 131);
+}
+
+/* Edge fix */
+
+.fltr-node .settings .control input[type=range]::-ms-track {
+    height: 16px;
+    background-color: rgb(242, 242, 242);
+    border: none;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.fltr-node .settings .control input[type=range]::-ms-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 8px;
+    border: 2px solid rgb(255, 114, 131);
+    background-color: #fff;
+    transition: all 0.3s;
+}
+
+.fltr-node .settings .control:hover input[type=range]::-ms-track {
     background-color: rgb(255, 114, 131);
 }
