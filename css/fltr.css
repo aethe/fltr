@@ -33,6 +33,11 @@ header h1 {
     margin: 0 auto;
 }
 
+/* Image's src cannot be empty for some reason, so an encoded 1 pixel white image will serve as an empty src */
+img#edge-result[src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"] {
+    display: none;
+}
+
 /* Footer */
 
 footer {

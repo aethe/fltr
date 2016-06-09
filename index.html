@@ -78,9 +78,12 @@
             </div>
 
             <!-- Edge fix -->
+            <!-- Edge (surprise!) cannot open canvas.getDataUrl() using window.open(), so we display the image somewhere on the same page with everything else -->
             <div class="row">
                 <div class="col-12">
-                    <img id="edge-result" style="width: 100%;">
+                    <!-- In order for the validation to pass, src must bet set to non-empty string, so... yeah... 1 pixel white image -->
+                    <!-- I could have created the image in JavaScript, but for some reason it didnt't seem like a good workaround to me -->
+                    <img id="edge-result" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Filter result" style="width: 100%;">
                 </div>
             </div>
 
