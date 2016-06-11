@@ -274,21 +274,21 @@ function FadeNode() {
 
     // Add strength control
     var strengthRange = new RangeControl("Strength", 0, 1, 0.01, this.filter.strength, function() {
-        this.filter.strength = strengthRange.getValue();
+        this.filter.strength = parseFloat(strengthRange.getValue());
         this.update();
     }.bind(this));
     this.settingsView.appendChild(strengthRange.view);
 
     // Add exponent control
     var exponentRange = new RangeControl("Exponent", 0, 10, 0.1, this.filter.exponent, function() {
-        this.filter.exponent = exponentRange.getValue();
+        this.filter.exponent = parseFloat(exponentRange.getValue());
         this.update();
     }.bind(this));
     this.settingsView.appendChild(exponentRange.view);
 
     // Add brightness control
     var brightnessRange = new RangeControl("Brightness", 0, 255, 1, this.filter.brightness, function() {
-        this.filter.brightness = brightnessRange.getValue();
+        this.filter.brightness = parseFloat(brightnessRange.getValue());
         this.update();
     }.bind(this));
     this.settingsView.appendChild(brightnessRange.view);
