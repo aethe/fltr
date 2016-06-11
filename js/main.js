@@ -29,6 +29,10 @@ function main() {
         filterList.appendFilterNode(new InvertNode());
     });
 
+    document.getElementById("add-brightness").addEventListener("click", function() {
+        filterList.appendFilterNode(new BrightnessNode());
+    });
+
     document.getElementById("add-fade").addEventListener("click", function() {
         filterList.appendFilterNode(new FadeNode());
     });

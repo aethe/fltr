@@ -262,6 +262,31 @@ function InvertNode() {
 
 InvertNode.prototype = new FilterNode(new InvertFilter());
 
+// BrightnessNode
+
+function BrightnessNode() {
+    this.loadView();
+    this.titleView.innerHTML = "Brightness";
+
+    // Create canvas
+    this.canvas = document.createElement("canvas");
+    this.contentView.appendChild(this.canvas);
+
+    // Add value control
+    var valueRange = new RangeControl("Value", -192, 192, 1, this.filter.value, function() {
+        this.filter.value = parseFloat(valueRange.getValue());
+        this.update();
+    }.bind(this));
+    this.settingsView.appendChild(valueRange.view);
+
+    // Add description
+    var description = document.createElement("p");
+    description.innerHTML = "Brightness filter adds some light to your image.";
+    this.settingsView.appendChild(description);
+}
+
+BrightnessNode.prototype = new FilterNode(new BrightnessFilter());
+
 // FadeNode
 
 function FadeNode() {

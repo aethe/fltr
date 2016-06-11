@@ -72,6 +72,20 @@ InvertFilter.prototype.processPixel = function(color) {
     color.blue = 255 - color.blue;
 }
 
+// BrightnessFilter
+
+function BrightnessFilter() {
+    this.value = 0;
+}
+
+BrightnessFilter.prototype = new BasicFilter();
+
+BrightnessFilter.prototype.processPixel = function(color) {
+    color.red = color.red + this.value;
+    color.green = color.green + this.value;
+    color.blue = color.blue + this.value;
+}
+
 // FadeFilter
 
 function FadeFilter() {
