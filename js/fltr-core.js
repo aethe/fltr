@@ -86,6 +86,20 @@ BrightnessFilter.prototype.processPixel = function(color) {
     color.blue = color.blue + this.value;
 }
 
+// ContrastFilter
+
+function ContrastFilter() {
+    this.value = 1;
+}
+
+ContrastFilter.prototype = new BasicFilter();
+
+ContrastFilter.prototype.processPixel = function(color) {
+    color.red = (color.red - 128) * this.value + 128;
+    color.green = (color.green - 128) * this.value + 128;
+    color.blue = (color.blue - 128) * this.value + 128;
+}
+
 // FadeFilter
 
 function FadeFilter() {

@@ -33,6 +33,10 @@ function main() {
         filterList.appendFilterNode(new BrightnessNode());
     });
 
+    document.getElementById("add-contrast").addEventListener("click", function() {
+        filterList.appendFilterNode(new ContrastNode());
+    });
+
     document.getElementById("add-fade").addEventListener("click", function() {
         filterList.appendFilterNode(new FadeNode());
     });

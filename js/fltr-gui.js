@@ -287,6 +287,31 @@ function BrightnessNode() {
 
 BrightnessNode.prototype = new FilterNode(new BrightnessFilter());
 
+// ContrastNode
+
+function ContrastNode() {
+    this.loadView();
+    this.titleView.innerHTML = "Contrast";
+
+    // Create canvas
+    this.canvas = document.createElement("canvas");
+    this.contentView.appendChild(this.canvas);
+
+    // Add value control
+    var valueRange = new RangeControl("Value", -0, 3, 0.01, this.filter.value, function() {
+        this.filter.value = parseFloat(valueRange.getValue());
+        this.update();
+    }.bind(this));
+    this.settingsView.appendChild(valueRange.view);
+
+    // Add description
+    var description = document.createElement("p");
+    description.innerHTML = "Contrast filter increases the color range of your image.";
+    this.settingsView.appendChild(description);
+}
+
+ContrastNode.prototype = new FilterNode(new ContrastFilter());
+
 // FadeNode
 
 function FadeNode() {
