@@ -37,3 +37,14 @@
 .grid .row > .col-10 { width: 83.33%; }
 .grid .row > .col-11 { width: 91.66%; }
 .grid .row > .col-12 { width: 100%; }
+
+@media only screen and (max-width: 640px) {
+    .grid .row > [class*='col-'] {
+        width: auto;
+        float: none;
+    }
+
+    [class*='col-'] + [class*='col-'] {
+        margin-left: 0;
+    }
+}
