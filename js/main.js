@@ -55,7 +55,21 @@ function main() {
         } else {
             // For other browsers open the image in a new tab
             window.open(canvas.toDataURL("image/jpeg"));
+        }
 
+        // Send a notification
+        if ("Notification" in window) {
+            var notificationText = "Your image has finished processing and is now available for download.";
+            var permission = Notification.permission;
+            if (permission === "granted") {
+                new Notification(notificationText);
+            } else if (permission !== "denied") {
+                Notification.requestPermission(function(permission) {
+                    if (permission === "granted") {
+                        new Notification(notificationText);
+                    }
+                });
+            }
         }
 
     }, false);
