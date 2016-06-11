@@ -48,7 +48,7 @@ function main() {
             return;
         }
 
-        if (window.navigator.userAgent.indexOf("Edge") > -1) {
+        if (window.navigator.userAgent.indexOf("Edge") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1) {
             // Display the image on the same page in Edge
             var edgeResultImage = document.getElementById("edge-result");
             edgeResultImage.src = canvas.toDataURL("image/jpeg");
