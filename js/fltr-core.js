@@ -111,13 +111,21 @@ function FadeFilter() {
 FadeFilter.prototype = new BasicFilter();
 
 FadeFilter.prototype.processPixel = function(color) {
-    var red = color.red * (1 - this.strength) + this.brightness * this.strength;
-    var green = color.green * (1 - this.strength) + this.brightness * this.strength;
-    var blue = color.blue * (1 - this.strength) + this.brightness * this.strength;
+    // Calculate the faded color
+    var fadedRed = color.red * (1 - this.strength) + this.brightness * this.strength;
+    var fadedGreen = color.green * (1 - this.strength) + this.brightness * this.strength;
+    var fadedBlue = color.blue * (1 - this.strength) + this.brightness * this.strength;
 
-    var t = 1 - color.getRelativeLuminance() / 255;
-    t = Math.pow(t, this.exponent);
-    color.red = color.red * (1 - t) + red * t;
-    color.green = color.green * (1 - t) + green * t;
-    color.blue = color.blue * (1 - t) + blue * t;
+    // Interpolate between the original color and the faded color based on how dark the original color is
+    // TODO: It might be a good idea to calculate the interpolation factor for each channel separately
+    var t = Math.pow(1 - color.getRelativeLuminance() / 255, this.exponent);
+    color.red = color.red * (1 - t) + fadedRed * t;
+    color.green = color.green * (1 - t) + fadedGreen * t;
+    color.blue = color.blue * (1 - t) + fadedBlue * t;
+
+    // Make sure that the faded color is not darker than the faded black color
+    var threshold = this.brightness * this.strength;
+    color.red = Math.max(color.red, threshold);
+    color.green = Math.max(color.green, threshold);
+    color.blue = Math.max(color.blue, threshold);
 }
