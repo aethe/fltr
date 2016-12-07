@@ -112,6 +112,22 @@ ContrastFilter.prototype.processPixel = function(color) {
     color.blue = (color.blue - 128) * this.value + 128;
 }
 
+// ColorBalanceFilter
+
+function ColorBalanceFilter() {
+    this.redFactor = 1;
+    this.greenFactor = 1;
+    this.blueFactor = 1;
+}
+
+ColorBalanceFilter.prototype = new BasicFilter();
+
+ColorBalanceFilter.prototype.processPixel = function(color) {
+    color.red = color.red * this.redFactor;
+    color.green = color.green * this.greenFactor;
+    color.blue = color.blue * this.blueFactor;
+}
+
 // FadeFilter
 
 function FadeFilter() {

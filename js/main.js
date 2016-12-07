@@ -37,6 +37,10 @@ function main() {
         filterList.appendFilterNode(new ContrastNode());
     });
 
+    document.getElementById("add-color-balance").addEventListener("click", function() {
+        filterList.appendFilterNode(new ColorBalanceNode());
+    });
+
     document.getElementById("add-fade").addEventListener("click", function() {
         filterList.appendFilterNode(new FadeNode());
     });

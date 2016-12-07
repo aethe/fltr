@@ -279,6 +279,9 @@ function BrightnessNode() {
     }.bind(this));
     this.settingsView.appendChild(valueRange.view);
 
+    // Insert separator
+    this.settingsView.appendChild(document.createElement("hr"));
+
     // Add description
     var description = document.createElement("p");
     description.innerHTML = "Brightness filter adds some light to your image.";
@@ -298,11 +301,14 @@ function ContrastNode() {
     this.contentView.appendChild(this.canvas);
 
     // Add value control
-    var valueRange = new RangeControl("Value", -0, 3, 0.01, this.filter.value, function() {
+    var valueRange = new RangeControl("Value", 0, 3, 0.01, this.filter.value, function() {
         this.filter.value = parseFloat(valueRange.getValue());
         this.update();
     }.bind(this));
     this.settingsView.appendChild(valueRange.view);
+
+    // Insert separator
+    this.settingsView.appendChild(document.createElement("hr"));
 
     // Add description
     var description = document.createElement("p");
@@ -311,6 +317,48 @@ function ContrastNode() {
 }
 
 ContrastNode.prototype = new FilterNode(new ContrastFilter());
+
+// ColorBalanceNode
+
+function ColorBalanceNode() {
+    this.loadView();
+    this.titleView.innerHTML = "Color Balance";
+
+    // Create canvas
+    this.canvas = document.createElement("canvas");
+    this.contentView.appendChild(this.canvas);
+
+    // Add red control
+    var redFactorRange = new RangeControl("Red", 0, 2, 0.01, this.filter.redFactor, function() {
+        this.filter.redFactor = parseFloat(redFactorRange.getValue());
+        this.update();
+    }.bind(this));
+    this.settingsView.appendChild(redFactorRange.view);
+
+    // Add green control
+    var greenFactorRange = new RangeControl("Green", 0, 2, 0.01, this.filter.greenFactor, function() {
+        this.filter.greenFactor = parseFloat(greenFactorRange.getValue());
+        this.update();
+    }.bind(this));
+    this.settingsView.appendChild(greenFactorRange.view);
+
+    // Add blue control
+    var blueFactorRange = new RangeControl("Blue", 0, 2, 0.01, this.filter.blueFactor, function() {
+        this.filter.blueFactor = parseFloat(blueFactorRange.getValue());
+        this.update();
+    }.bind(this));
+    this.settingsView.appendChild(blueFactorRange.view);
+
+    // Insert separator
+    this.settingsView.appendChild(document.createElement("hr"));
+
+    // Add description
+    var description = document.createElement("p");
+    description.innerHTML = "Color Balance filter adjusts colors of your image.";
+    this.settingsView.appendChild(description);
+}
+
+ColorBalanceNode.prototype = new FilterNode(new ColorBalanceFilter());
 
 // FadeNode
 
