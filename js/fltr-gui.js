@@ -318,6 +318,34 @@ function ContrastNode() {
 
 ContrastNode.prototype = new FilterNode(new ContrastFilter());
 
+// SaturationNode
+
+function SaturationNode() {
+    this.loadView();
+    this.titleView.innerHTML = "Saturation";
+
+    // Create canvas
+    this.canvas = document.createElement("canvas");
+    this.contentView.appendChild(this.canvas);
+
+    // Add value control
+    var valueRange = new RangeControl("Value", 0, 2, 0.01, this.filter.value, function() {
+        this.filter.value = parseFloat(valueRange.getValue());
+        this.update();
+    }.bind(this));
+    this.settingsView.appendChild(valueRange.view);
+
+    // Insert separator
+    this.settingsView.appendChild(document.createElement("hr"));
+
+    // Add description
+    var description = document.createElement("p");
+    description.innerHTML = "Saturation filter makes your image juicy.";
+    this.settingsView.appendChild(description);
+}
+
+SaturationNode.prototype = new FilterNode(new SaturationFilter());
+
 // ColorBalanceNode
 
 function ColorBalanceNode() {

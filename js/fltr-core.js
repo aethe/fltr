@@ -112,6 +112,21 @@ ContrastFilter.prototype.processPixel = function(color) {
     color.blue = (color.blue - 128) * this.value + 128;
 }
 
+// SaturationFilter
+
+function SaturationFilter() {
+    this.value = 1;
+}
+
+SaturationFilter.prototype = new BasicFilter();
+
+SaturationFilter.prototype.processPixel = function(color) {
+    var relativeLuminance = color.getRelativeLuminance();
+    color.red = relativeLuminance + (color.red - relativeLuminance) * this.value;
+    color.green = relativeLuminance + (color.green - relativeLuminance) * this.value;
+    color.blue = relativeLuminance + (color.blue - relativeLuminance) * this.value;
+}
+
 // ColorBalanceFilter
 
 function ColorBalanceFilter() {
