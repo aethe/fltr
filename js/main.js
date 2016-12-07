@@ -41,6 +41,10 @@ function main() {
         filterList.appendFilterNode(new FadeNode());
     });
 
+    document.getElementById("add-grain").addEventListener("click", function() {
+        filterList.appendFilterNode(new GrainNode());
+    });
+
     var downloadButton = document.getElementById("download");
     downloadButton.addEventListener("click", function() {
         var canvas = filterList.tailNode.canvas;

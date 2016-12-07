@@ -1,3 +1,15 @@
+// Random numbers
+
+function randomUniform() {
+    return Math.random();
+}
+
+function randomNormal() {
+    var u = 1 - randomUniform();
+    var v = 1 - randomUniform();
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+}
+
 // Color
 
 function Color(red, green, blue, alpha) {
@@ -128,4 +140,19 @@ FadeFilter.prototype.processPixel = function(color) {
     color.red = Math.max(color.red, threshold);
     color.green = Math.max(color.green, threshold);
     color.blue = Math.max(color.blue, threshold);
+}
+
+// GrainFilter
+
+function GrainFilter() {
+    this.strength = 0.05;
+}
+
+GrainFilter.prototype = new BasicFilter();
+
+GrainFilter.prototype.processPixel = function(color) {
+    var modifier = randomNormal() * 255 * this.strength;
+    color.red = color.red + modifier;
+    color.green = color.green + modifier;
+    color.blue = color.blue + modifier;
 }

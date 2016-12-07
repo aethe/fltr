@@ -353,3 +353,31 @@ function FadeNode() {
 }
 
 FadeNode.prototype = new FilterNode(new FadeFilter());
+
+// GrainNode
+
+function GrainNode() {
+    this.loadView();
+    this.titleView.innerHTML = "Grain";
+
+    // Create canvas
+    this.canvas = document.createElement("canvas");
+    this.contentView.appendChild(this.canvas);
+
+    // Add strength control
+    var strengthRange = new RangeControl("Strength", 0, 1, 0.01, this.filter.strength, function() {
+        this.filter.strength = parseFloat(strengthRange.getValue());
+        this.update();
+    }.bind(this));
+    this.settingsView.appendChild(strengthRange.view);
+
+    // Insert separator
+    this.settingsView.appendChild(document.createElement("hr"));
+
+    // Add description
+    var description = document.createElement("p");
+    description.innerHTML = "Grain filter adds some noise to your image.";
+    this.settingsView.appendChild(description);
+}
+
+GrainNode.prototype = new FilterNode(new GrainFilter());
