@@ -182,7 +182,7 @@ function GrainFilter() {
 GrainFilter.prototype = new BasicFilter();
 
 GrainFilter.prototype.processPixel = function(color) {
-    var modifier = randomNormal() * 255 * this.strength;
+    var modifier = randomNormal() * 128 * this.strength;
     color.red = color.red + modifier;
     color.green = color.green + modifier;
     color.blue = color.blue + modifier;
