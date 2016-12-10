@@ -273,7 +273,7 @@ function BrightnessNode() {
     this.contentView.appendChild(this.canvas);
 
     // Add value control
-    var valueRange = new RangeControl("Value", -192, 192, 1, this.filter.value, function() {
+    var valueRange = new RangeControl("Value", -128, 128, 1, this.filter.value, function() {
         this.filter.value = parseFloat(valueRange.getValue());
         this.update();
     }.bind(this));
@@ -301,7 +301,7 @@ function ContrastNode() {
     this.contentView.appendChild(this.canvas);
 
     // Add value control
-    var valueRange = new RangeControl("Value", 0, 3, 0.01, this.filter.value, function() {
+    var valueRange = new RangeControl("Value", 0.5, 2, 0.015, this.filter.value, function() {
         this.filter.value = parseFloat(valueRange.getValue());
         this.update();
     }.bind(this));
@@ -329,7 +329,7 @@ function SaturationNode() {
     this.contentView.appendChild(this.canvas);
 
     // Add value control
-    var valueRange = new RangeControl("Value", 0, 2, 0.01, this.filter.value, function() {
+    var valueRange = new RangeControl("Value", 0, 2, 0.02, this.filter.value, function() {
         this.filter.value = parseFloat(valueRange.getValue());
         this.update();
     }.bind(this));
@@ -357,21 +357,21 @@ function ColorBalanceNode() {
     this.contentView.appendChild(this.canvas);
 
     // Add red control
-    var redFactorRange = new RangeControl("Red", 0, 2, 0.01, this.filter.redFactor, function() {
+    var redFactorRange = new RangeControl("Red", 0, 2, 0.02, this.filter.redFactor, function() {
         this.filter.redFactor = parseFloat(redFactorRange.getValue());
         this.update();
     }.bind(this));
     this.settingsView.appendChild(redFactorRange.view);
 
     // Add green control
-    var greenFactorRange = new RangeControl("Green", 0, 2, 0.01, this.filter.greenFactor, function() {
+    var greenFactorRange = new RangeControl("Green", 0, 2, 0.02, this.filter.greenFactor, function() {
         this.filter.greenFactor = parseFloat(greenFactorRange.getValue());
         this.update();
     }.bind(this));
     this.settingsView.appendChild(greenFactorRange.view);
 
     // Add blue control
-    var blueFactorRange = new RangeControl("Blue", 0, 2, 0.01, this.filter.blueFactor, function() {
+    var blueFactorRange = new RangeControl("Blue", 0, 2, 0.02, this.filter.blueFactor, function() {
         this.filter.blueFactor = parseFloat(blueFactorRange.getValue());
         this.update();
     }.bind(this));
@@ -406,7 +406,7 @@ function FadeNode() {
     this.settingsView.appendChild(strengthRange.view);
 
     // Add exponent control
-    var exponentRange = new RangeControl("Exponent", 0, 10, 0.1, this.filter.exponent, function() {
+    var exponentRange = new RangeControl("Exponent", 1, 5, 0.04, this.filter.exponent, function() {
         this.filter.exponent = parseFloat(exponentRange.getValue());
         this.update();
     }.bind(this));
