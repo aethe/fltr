@@ -160,7 +160,6 @@ FadeFilter.prototype.processPixel = function(color) {
     var fadedBlue = color.blue * (1 - this.strength) + this.brightness * this.strength;
 
     // Interpolate between the original color and the faded color based on how dark the original color is
-    // TODO: It might be a good idea to calculate the interpolation factor for each channel separately
     var t = Math.pow(1 - color.getRelativeLuminance() / 255, this.exponent);
     color.red = color.red * (1 - t) + fadedRed * t;
     color.green = color.green * (1 - t) + fadedGreen * t;
