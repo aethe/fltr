@@ -272,12 +272,12 @@ function BrightnessNode() {
     this.canvas = document.createElement("canvas");
     this.contentView.appendChild(this.canvas);
 
-    // Add value control
-    var valueRange = new RangeControl("Value", -128, 128, 1, this.filter.value, function() {
-        this.filter.value = parseFloat(valueRange.getValue());
+    // Add intensity control
+    var intensityRange = new RangeControl("Intensity", -128, 128, 1, this.filter.intensity, function() {
+        this.filter.intensity = parseFloat(intensityRange.getValue());
         this.update();
     }.bind(this));
-    this.settingsView.appendChild(valueRange.view);
+    this.settingsView.appendChild(intensityRange.view);
 
     // Insert separator
     this.settingsView.appendChild(document.createElement("hr"));
@@ -300,12 +300,12 @@ function ContrastNode() {
     this.canvas = document.createElement("canvas");
     this.contentView.appendChild(this.canvas);
 
-    // Add value control
-    var valueRange = new RangeControl("Value", 0.5, 2, 0.015, this.filter.value, function() {
-        this.filter.value = parseFloat(valueRange.getValue());
+    // Add intensity control
+    var intensityRange = new RangeControl("Intensity", 0.5, 2, 0.015, this.filter.intensity, function() {
+        this.filter.intensity = parseFloat(intensityRange.getValue());
         this.update();
     }.bind(this));
-    this.settingsView.appendChild(valueRange.view);
+    this.settingsView.appendChild(intensityRange.view);
 
     // Insert separator
     this.settingsView.appendChild(document.createElement("hr"));
@@ -328,12 +328,12 @@ function SaturationNode() {
     this.canvas = document.createElement("canvas");
     this.contentView.appendChild(this.canvas);
 
-    // Add value control
-    var valueRange = new RangeControl("Value", 0, 2, 0.02, this.filter.value, function() {
-        this.filter.value = parseFloat(valueRange.getValue());
+    // Add intensity control
+    var intensityRange = new RangeControl("Intensity", 0, 2, 0.02, this.filter.intensity, function() {
+        this.filter.intensity = parseFloat(intensityRange.getValue());
         this.update();
     }.bind(this));
-    this.settingsView.appendChild(valueRange.view);
+    this.settingsView.appendChild(intensityRange.view);
 
     // Insert separator
     this.settingsView.appendChild(document.createElement("hr"));
@@ -356,26 +356,26 @@ function ColorBalanceNode() {
     this.canvas = document.createElement("canvas");
     this.contentView.appendChild(this.canvas);
 
-    // Add red control
-    var redFactorRange = new RangeControl("Red", 0, 2, 0.02, this.filter.redFactor, function() {
-        this.filter.redFactor = parseFloat(redFactorRange.getValue());
+    // Add red intensity control
+    var redIntensityRange = new RangeControl("Red", 0, 2, 0.02, this.filter.redIntensity, function() {
+        this.filter.redIntensity = parseFloat(redIntensityRange.getValue());
         this.update();
     }.bind(this));
-    this.settingsView.appendChild(redFactorRange.view);
+    this.settingsView.appendChild(redIntensityRange.view);
 
-    // Add green control
-    var greenFactorRange = new RangeControl("Green", 0, 2, 0.02, this.filter.greenFactor, function() {
-        this.filter.greenFactor = parseFloat(greenFactorRange.getValue());
+    // Add green intensity control
+    var greenIntensityRange = new RangeControl("Green", 0, 2, 0.02, this.filter.greenIntensity, function() {
+        this.filter.greenIntensity = parseFloat(greenIntensityRange.getValue());
         this.update();
     }.bind(this));
-    this.settingsView.appendChild(greenFactorRange.view);
+    this.settingsView.appendChild(greenIntensityRange.view);
 
-    // Add blue control
-    var blueFactorRange = new RangeControl("Blue", 0, 2, 0.02, this.filter.blueFactor, function() {
-        this.filter.blueFactor = parseFloat(blueFactorRange.getValue());
+    // Add blue intensity control
+    var blueIntensityRange = new RangeControl("Blue", 0, 2, 0.02, this.filter.blueIntensity, function() {
+        this.filter.blueIntensity = parseFloat(blueIntensityRange.getValue());
         this.update();
     }.bind(this));
-    this.settingsView.appendChild(blueFactorRange.view);
+    this.settingsView.appendChild(blueIntensityRange.view);
 
     // Insert separator
     this.settingsView.appendChild(document.createElement("hr"));
@@ -398,26 +398,26 @@ function FadeNode() {
     this.canvas = document.createElement("canvas");
     this.contentView.appendChild(this.canvas);
 
-    // Add strength control
-    var strengthRange = new RangeControl("Strength", 0, 1, 0.01, this.filter.strength, function() {
-        this.filter.strength = parseFloat(strengthRange.getValue());
+    // Add intensity control
+    var intensityRange = new RangeControl("Intensity", 0, 1, 0.01, this.filter.intensity, function() {
+        this.filter.intensity = parseFloat(intensityRange.getValue());
         this.update();
     }.bind(this));
-    this.settingsView.appendChild(strengthRange.view);
+    this.settingsView.appendChild(intensityRange.view);
 
-    // Add exponent control
-    var exponentRange = new RangeControl("Exponent", 1, 5, 0.04, this.filter.exponent, function() {
-        this.filter.exponent = parseFloat(exponentRange.getValue());
+    // Add shade control
+    var shadeRange = new RangeControl("Shade", 0, 255, 1, this.filter.shade, function() {
+        this.filter.shade = parseFloat(shadeRange.getValue());
         this.update();
     }.bind(this));
-    this.settingsView.appendChild(exponentRange.view);
+    this.settingsView.appendChild(shadeRange.view);
 
-    // Add brightness control
-    var brightnessRange = new RangeControl("Brightness", 0, 255, 1, this.filter.brightness, function() {
-        this.filter.brightness = parseFloat(brightnessRange.getValue());
+    // Add tolerance control
+    var toleranceRange = new RangeControl("Tolerance", 1, 5, 0.04, this.filter.tolerance, function() {
+        this.filter.tolerance = parseFloat(toleranceRange.getValue());
         this.update();
     }.bind(this));
-    this.settingsView.appendChild(brightnessRange.view);
+    this.settingsView.appendChild(toleranceRange.view);
 
     // Insert separator
     this.settingsView.appendChild(document.createElement("hr"));
@@ -440,12 +440,12 @@ function GrainNode() {
     this.canvas = document.createElement("canvas");
     this.contentView.appendChild(this.canvas);
 
-    // Add strength control
-    var strengthRange = new RangeControl("Strength", 0, 1, 0.01, this.filter.strength, function() {
-        this.filter.strength = parseFloat(strengthRange.getValue());
+    // Add intensity control
+    var intensityRange = new RangeControl("Intensity", 0, 1, 0.01, this.filter.intensity, function() {
+        this.filter.intensity = parseFloat(intensityRange.getValue());
         this.update();
     }.bind(this));
-    this.settingsView.appendChild(strengthRange.view);
+    this.settingsView.appendChild(intensityRange.view);
 
     // Insert separator
     this.settingsView.appendChild(document.createElement("hr"));

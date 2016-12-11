@@ -87,86 +87,86 @@ InvertFilter.prototype.processPixel = function(color) {
 // BrightnessFilter
 
 function BrightnessFilter() {
-    this.value = 0;
+    this.intensity = 0;
 }
 
 BrightnessFilter.prototype = new BasicFilter();
 
 BrightnessFilter.prototype.processPixel = function(color) {
-    color.red = color.red + this.value;
-    color.green = color.green + this.value;
-    color.blue = color.blue + this.value;
+    color.red = color.red + this.intensity;
+    color.green = color.green + this.intensity;
+    color.blue = color.blue + this.intensity;
 }
 
 // ContrastFilter
 
 function ContrastFilter() {
-    this.value = 1;
+    this.intensity = 1;
 }
 
 ContrastFilter.prototype = new BasicFilter();
 
 ContrastFilter.prototype.processPixel = function(color) {
-    color.red = (color.red - 128) * this.value + 128;
-    color.green = (color.green - 128) * this.value + 128;
-    color.blue = (color.blue - 128) * this.value + 128;
+    color.red = (color.red - 128) * this.intensity + 128;
+    color.green = (color.green - 128) * this.intensity + 128;
+    color.blue = (color.blue - 128) * this.intensity + 128;
 }
 
 // SaturationFilter
 
 function SaturationFilter() {
-    this.value = 1;
+    this.intensity = 1;
 }
 
 SaturationFilter.prototype = new BasicFilter();
 
 SaturationFilter.prototype.processPixel = function(color) {
     var relativeLuminance = color.getRelativeLuminance();
-    color.red = relativeLuminance + (color.red - relativeLuminance) * this.value;
-    color.green = relativeLuminance + (color.green - relativeLuminance) * this.value;
-    color.blue = relativeLuminance + (color.blue - relativeLuminance) * this.value;
+    color.red = relativeLuminance + (color.red - relativeLuminance) * this.intensity;
+    color.green = relativeLuminance + (color.green - relativeLuminance) * this.intensity;
+    color.blue = relativeLuminance + (color.blue - relativeLuminance) * this.intensity;
 }
 
 // ColorBalanceFilter
 
 function ColorBalanceFilter() {
-    this.redFactor = 1;
-    this.greenFactor = 1;
-    this.blueFactor = 1;
+    this.redIntensity = 1;
+    this.greenIntensity = 1;
+    this.blueIntensity = 1;
 }
 
 ColorBalanceFilter.prototype = new BasicFilter();
 
 ColorBalanceFilter.prototype.processPixel = function(color) {
-    color.red = color.red * this.redFactor;
-    color.green = color.green * this.greenFactor;
-    color.blue = color.blue * this.blueFactor;
+    color.red = color.red * this.redIntensity;
+    color.green = color.green * this.greenIntensity;
+    color.blue = color.blue * this.blueIntensity;
 }
 
 // FadeFilter
 
 function FadeFilter() {
-    this.strength = 0.25;
-    this.exponent = 3;
-    this.brightness = 128;
+    this.intensity = 0.25;
+    this.shade = 128;
+    this.tolerance = 3;
 }
 
 FadeFilter.prototype = new BasicFilter();
 
 FadeFilter.prototype.processPixel = function(color) {
     // Calculate the faded color
-    var fadedRed = color.red * (1 - this.strength) + this.brightness * this.strength;
-    var fadedGreen = color.green * (1 - this.strength) + this.brightness * this.strength;
-    var fadedBlue = color.blue * (1 - this.strength) + this.brightness * this.strength;
+    var fadedRed = color.red * (1 - this.intensity) + this.shade * this.intensity;
+    var fadedGreen = color.green * (1 - this.intensity) + this.shade * this.intensity;
+    var fadedBlue = color.blue * (1 - this.intensity) + this.shade * this.intensity;
 
     // Interpolate between the original color and the faded color based on how dark the original color is
-    var t = Math.pow(1 - color.getRelativeLuminance() / 255, this.exponent);
+    var t = Math.pow(1 - color.getRelativeLuminance() / 255, this.tolerance);
     color.red = color.red * (1 - t) + fadedRed * t;
     color.green = color.green * (1 - t) + fadedGreen * t;
     color.blue = color.blue * (1 - t) + fadedBlue * t;
 
     // Make sure that the faded color is not darker than the faded black color
-    var threshold = this.brightness * this.strength;
+    var threshold = this.shade * this.intensity;
     color.red = Math.max(color.red, threshold);
     color.green = Math.max(color.green, threshold);
     color.blue = Math.max(color.blue, threshold);
@@ -175,13 +175,13 @@ FadeFilter.prototype.processPixel = function(color) {
 // GrainFilter
 
 function GrainFilter() {
-    this.strength = 0.05;
+    this.intensity = 0.05;
 }
 
 GrainFilter.prototype = new BasicFilter();
 
 GrainFilter.prototype.processPixel = function(color) {
-    var modifier = randomNormal() * 64 * this.strength;
+    var modifier = randomNormal() * 64 * this.intensity;
     color.red = color.red + modifier;
     color.green = color.green + modifier;
     color.blue = color.blue + modifier;
