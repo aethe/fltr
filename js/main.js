@@ -45,6 +45,10 @@ function main() {
         filterList.appendFilterNode(new ColorBalanceNode());
     });
 
+    document.getElementById("add-temperature").addEventListener("click", function() {
+        filterList.appendFilterNode(new TemperatureNode());
+    });
+
     document.getElementById("add-fade").addEventListener("click", function() {
         filterList.appendFilterNode(new FadeNode());
     });

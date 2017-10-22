@@ -143,6 +143,19 @@ ColorBalanceFilter.prototype.processPixel = function(color) {
     color.blue = color.blue * this.blueIntensity;
 }
 
+// TemperatureFilter
+
+function TemperatureFilter() {
+    this.warmth = 0;
+}
+
+TemperatureFilter.prototype = new BasicFilter();
+
+TemperatureFilter.prototype.processPixel = function(color) {
+    color.red = color.red + this.warmth;
+    color.blue = color.blue - this.warmth;
+}
+
 // FadeFilter
 
 function FadeFilter() {

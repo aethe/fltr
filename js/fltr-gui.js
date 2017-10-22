@@ -388,6 +388,36 @@ function ColorBalanceNode() {
 
 ColorBalanceNode.prototype = new FilterNode(new ColorBalanceFilter());
 
+// TemperatureNode
+
+function TemperatureNode() {
+    this.loadView();
+    this.titleView.innerHTML = "Temperature";
+
+    // Create canvas
+    this.canvas = document.createElement("canvas");
+    this.contentView.appendChild(this.canvas);
+
+    // title, min, max, step, value, onChange
+
+    // Add warmth control
+    var warmthRange = new RangeControl("Warmth", -100, 100, 1, this.filter.warmth, function() {
+        this.filter.warmth = parseFloat(warmthRange.getValue());
+        this.update();
+    }.bind(this));
+    this.settingsView.appendChild(warmthRange.view);
+
+    // Insert separator
+    this.settingsView.appendChild(document.createElement("hr"));
+
+    // Add description
+    var description = document.createElement("p");
+    description.innerHTML = "Temperature filter adjusts warmth of your image.";
+    this.settingsView.appendChild(description);
+}
+
+TemperatureNode.prototype = new FilterNode(new TemperatureFilter());
+
 // FadeNode
 
 function FadeNode() {
