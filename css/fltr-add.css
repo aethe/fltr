@@ -10,12 +10,24 @@
     color: hsl(0, 0%, 70%);
 }
 
+@media(prefers-color-scheme: dark) {
+    .fltr-add .header h1 {
+        color: hsl(0, 0%, 30%);
+    }
+}
+
 .fltr-add .item {
     padding: 8px;
     margin-top: 4px;
     margin-bottom: 4px;
     cursor: pointer;
     color: hsl(0, 0%, 70%);
+}
+
+@media(prefers-color-scheme: dark) {
+    .fltr-add .item {
+        color: hsl(0, 0%, 30%);
+    }
 }
 
 .fltr-add .item:hover {
