@@ -7,7 +7,7 @@
     padding: 16px;
     text-align: center;
     font-weight: lighter;
-    color: rgb(128, 128, 128);
+    color: hsl(0, 0%, 70%);
 }
 
 .fltr-add .item {
@@ -15,11 +15,11 @@
     margin-top: 4px;
     margin-bottom: 4px;
     cursor: pointer;
-    color: rgb(128, 128, 128);
+    color: hsl(0, 0%, 70%);
 }
 
 .fltr-add .item:hover {
-    background-color: rgb(255, 114, 131);
+    background-color: hsl(355, 100%, 70%);
     border-radius: 2px;
     color: white;
 }

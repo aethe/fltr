@@ -39,7 +39,7 @@
 .fltr-node .content canvas {
     width: 100%;
     border-radius: 4px;
-    background-color: rgb(246, 246, 246);
+    background-color: hsl(0, 0%, 97%);
 }
 
 .fltr-node .content .drop {
@@ -47,11 +47,11 @@
     height: 240px;
     padding-top: 24px;
     border-radius: 4px;
-    background-color: rgb(246, 246, 246);
+    background-color: hsl(0, 0%, 97%);
 }
 
 .fltr-node .content .drop.dragging {
-    background-color: rgb(255, 114, 131);
+    background-color: hsl(355, 100%, 70%);
     background-image: url(../img/upload-active.png);
     background-repeat: no-repeat;
     background-position: center;
@@ -74,7 +74,7 @@
     text-align: center;
     font-size: 1.2em;
     font-weight: normal;
-    color: rgb(168, 168, 168);
+    color: hsl(0, 0%, 70%);
 }
 
 .fltr-node .content .drop.dragging h1 {
@@ -101,7 +101,7 @@
     text-align: center;
     padding-top: 8px;
     padding-bottom: 8px;
-    color: rgb(200, 200, 200);
+    color: hsl(0, 0%, 70%);
     font-style: italic;
 }
 
@@ -109,14 +109,19 @@
     padding-top: 8px;
     padding-bottom: 8px;
     font-weight: lighter;
-    color: rgb(200, 200, 200);
+    color: hsl(0, 0%, 70%);
     text-align: center;
 }
 
 .fltr-node .settings hr {
     height: 1px;
     border: 0;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+    background-image: linear-gradient(
+        to right, 
+        hsla(0, 0%, 70%, 0), 
+        hsla(0, 0%, 70%, 1), 
+        hsla(0, 0%, 70%, 0)
+    );
 }
 
 .fltr-node .settings .control {
@@ -128,14 +133,14 @@
 .fltr-node .settings .control label {
     display: block;
     margin-bottom: 8px;
-    color: rgb(150, 150, 150);
+    color: hsl(0, 0%, 70%);
     text-transform: uppercase;
     font-size: 0.75em;
     transition: all 0.3s;
 }
 
 .fltr-node .settings .control:hover label {
-    color: rgb(255, 114, 131);
+    color: hsl(355, 100%, 70%);
 }
 
 .fltr-node .settings .control input {
@@ -154,7 +159,7 @@
 
 .fltr-node .settings .control input[type=range]::-webkit-slider-runnable-track {
     height: 16px;
-    background-color: rgb(242, 242, 242);
+    background-color: hsl(0, 0%, 97%);
     border: none;
     border-radius: 8px;
     transition: all 0.3s;
@@ -165,20 +170,20 @@
     width: 16px;
     height: 16px;
     border-radius: 8px;
-    border: 2px solid rgb(255, 114, 131);
-    background-color: #fff;
+    border: 2px solid hsl(355, 100%, 70%);
+    background-color: white;
     transition: all 0.3s;
 }
 
 .fltr-node .settings .control:hover input[type=range]::-webkit-slider-runnable-track {
-    background-color: rgb(255, 114, 131);
+    background-color: hsl(355, 100%, 70%);
 }
 
 /* Firefox fix */
 
 .fltr-node .settings .control input[type=range]::-moz-range-track {
     height: 16px;
-    background-color: rgb(242, 242, 242);
+    background-color: hsl(0, 0%, 97%);
     border: none;
     border-radius: 8px;
     transition: all 0.3s;
@@ -189,20 +194,20 @@
     width: 12px;
     height: 12px;
     border-radius: 8px;
-    border: 2px solid rgb(255, 114, 131);
-    background-color: #fff;
+    border: 2px solid hsl(355, 100%, 70%);
+    background-color: white;
     transition: all 0.3s;
 }
 
 .fltr-node .settings .control:hover input[type=range]::-moz-range-track {
-    background-color: rgb(255, 114, 131);
+    background-color: hsl(355, 100%, 70%);
 }
 
 /* Edge fix */
 
 .fltr-node .settings .control input[type=range]::-ms-track {
     height: 16px;
-    background-color: rgb(242, 242, 242);
+    background-color: hsl(0, 0%, 97%);
     border: none;
     border-radius: 8px;
     transition: all 0.3s;
@@ -213,11 +218,11 @@
     width: 12px;
     height: 12px;
     border-radius: 8px;
-    border: 2px solid rgb(255, 114, 131);
-    background-color: #fff;
+    border: 2px solid hsl(355, 100%, 70%);
+    background-color: white;
     transition: all 0.3s;
 }
 
 .fltr-node .settings .control:hover input[type=range]::-ms-track {
-    background-color: rgb(255, 114, 131);
+    background-color: hsl(355, 100%, 70%);
 }
