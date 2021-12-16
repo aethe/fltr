@@ -20,6 +20,6 @@
 
 .fltr-add .item:hover {
     background-color: hsl(355, 100%, 70%);
-    border-radius: 2px;
+    border-radius: 4px;
     color: white;
 }
