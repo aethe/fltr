@@ -35,3 +35,9 @@
     border-radius: 4px;
     color: white;
 }
+
+@media(prefers-color-scheme: dark) {
+    .fltr-add .item:hover {
+        color: black;
+    }
+}

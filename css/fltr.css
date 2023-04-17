@@ -67,6 +67,12 @@ footer button {
     border: none;
 }
 
+@media(prefers-color-scheme: dark) {
+    footer button {
+        color: black;
+    }
+}
+
 footer button:hover {
     background-color: hsl(355, 85%, 65%);
 }
