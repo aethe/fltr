@@ -342,7 +342,7 @@ function FadeNode() {
     this.settingsView.appendChild(intensityRange.view);
 
     // Add shade control
-    var shadeRange = new RangeControl("Shade", 0, 255, 1, this.filter.shade, function() {
+    var shadeRange = new RangeControl("Shade", 0, 1, 0.01, this.filter.shade, function() {
         this.filter.shade = parseFloat(shadeRange.getValue());
         this.update();
     }.bind(this));
@@ -471,7 +471,7 @@ function TemperatureNode() {
     // title, min, max, step, value, onChange
 
     // Add warmth control
-    var warmthRange = new RangeControl("Warmth", -100, 100, 1, this.filter.warmth, function() {
+    var warmthRange = new RangeControl("Warmth", -0.5, 0.5, 0.01, this.filter.warmth, function() {
         this.filter.warmth = parseFloat(warmthRange.getValue());
         this.update();
     }.bind(this));

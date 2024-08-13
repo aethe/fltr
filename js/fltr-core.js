@@ -37,23 +37,23 @@ BasicFilter.prototype = new Filter();
 
 BasicFilter.prototype.process = function(imageData) {
     for (var i = 0; i < imageData.data.length; i += 4) {
-        // Read the color data
-        var red = imageData.data[i];
-        var green = imageData.data[i + 1];
-        var blue = imageData.data[i + 2];
-        var alpha = imageData.data[i + 3];
+        // Read and normalise the colour data
+        var red = imageData.data[i + 0] / 255;
+        var green = imageData.data[i + 1] / 255;
+        var blue = imageData.data[i + 2] / 255;
+        var alpha = imageData.data[i + 3] / 255;
 
-        // Prepare the color
+        // Prepare the colour
         var color = new Color(red, green, blue, alpha);
 
-        // Process the color
+        // Process the colour
         this.processPixel(color);
 
         // Write the result back
-        imageData.data[i] = color.red;
-        imageData.data[i + 1] = color.green;
-        imageData.data[i + 2] = color.blue;
-        imageData.data[i + 3] = color.alpha;
+        imageData.data[i + 0] = Math.round(Math.min(Math.max(color.red, 0), 1) * 255);
+        imageData.data[i + 1] = Math.round(Math.min(Math.max(color.green, 0), 1) * 255);
+        imageData.data[i + 2] = Math.round(Math.min(Math.max(color.blue, 0), 1) * 255);
+        imageData.data[i + 3] = Math.round(Math.min(Math.max(color.alpha, 0), 1) * 255);
     }
 }
 
@@ -98,16 +98,16 @@ function ContrastFilter() {
 ContrastFilter.prototype = new BasicFilter();
 
 ContrastFilter.prototype.processPixel = function(color) {
-    color.red = (color.red - 128) * this.intensity + 128;
-    color.green = (color.green - 128) * this.intensity + 128;
-    color.blue = (color.blue - 128) * this.intensity + 128;
+    color.red = (color.red - 0.5) * this.intensity + 0.5;
+    color.green = (color.green - 0.5) * this.intensity + 0.5;
+    color.blue = (color.blue - 0.5) * this.intensity + 0.5;
 }
 
 // FadeFilter
 
 function FadeFilter() {
     this.intensity = 0.25;
-    this.shade = 128;
+    this.shade = 0.5;
     this.tolerance = 3;
 }
 
@@ -119,13 +119,13 @@ FadeFilter.prototype.processPixel = function(color) {
     var fadedGreen = color.green * (1 - this.intensity) + this.shade * this.intensity;
     var fadedBlue = color.blue * (1 - this.intensity) + this.shade * this.intensity;
 
-    // Interpolate between the original color and the faded color based on how dark the original color is
-    var t = Math.pow(1 - color.getRelativeLuminance() / 255, this.tolerance);
+    // Interpolate between the original colour and the faded colour based on how dark the original colour is
+    var t = Math.pow(1 - color.getRelativeLuminance(), this.tolerance);
     color.red = color.red * (1 - t) + fadedRed * t;
     color.green = color.green * (1 - t) + fadedGreen * t;
     color.blue = color.blue * (1 - t) + fadedBlue * t;
 
-    // Make sure that the faded color is not darker than the faded black color
+    // Make sure that the faded colour is not darker than the faded black colour
     var threshold = this.shade * this.intensity;
     color.red = Math.max(color.red, threshold);
     color.green = Math.max(color.green, threshold);
@@ -141,7 +141,7 @@ function GrainFilter() {
 GrainFilter.prototype = new BasicFilter();
 
 GrainFilter.prototype.processPixel = function(color) {
-    var modifier = randomNormal() * 64 * this.intensity;
+    var modifier = randomNormal() * 0.25 * this.intensity;
     color.red = color.red + modifier;
     color.green = color.green + modifier;
     color.blue = color.blue + modifier;
@@ -167,9 +167,9 @@ function InvertFilter() { }
 InvertFilter.prototype = new BasicFilter();
 
 InvertFilter.prototype.processPixel = function(color) {
-    color.red = 255 - color.red;
-    color.green = 255 - color.green;
-    color.blue = 255 - color.blue;
+    color.red = 1 - color.red;
+    color.green = 1 - color.green;
+    color.blue = 1 - color.blue;
 }
 
 // SaturationFilter
