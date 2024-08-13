@@ -103,6 +103,21 @@ ContrastFilter.prototype.processPixel = function(color) {
     color.blue = (color.blue - 0.5) * this.intensity + 0.5;
 }
 
+// ExposureFilter
+
+function ExposureFilter() {
+    this.intensity = 0;
+}
+
+ExposureFilter.prototype = new BasicFilter();
+
+ExposureFilter.prototype.processPixel = function(color) {
+    var factor = Math.pow(2, this.intensity);
+    color.red = color.red * factor;
+    color.green = color.green * factor;
+    color.blue = color.blue * factor;
+}
+
 // FadeFilter
 
 function FadeFilter() {

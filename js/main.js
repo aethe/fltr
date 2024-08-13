@@ -21,32 +21,20 @@ FilterList.prototype.appendFilterNode = function(filterNode) {
 function main() {
     var filterList = new FilterList();
 
-    document.getElementById("add-grayscale").addEventListener("click", function() {
-        filterList.appendFilterNode(new GrayscaleNode());
-    });
-
-    document.getElementById("add-invert").addEventListener("click", function() {
-        filterList.appendFilterNode(new InvertNode());
-    });
-
     document.getElementById("add-brightness").addEventListener("click", function() {
         filterList.appendFilterNode(new BrightnessNode());
-    });
-
-    document.getElementById("add-contrast").addEventListener("click", function() {
-        filterList.appendFilterNode(new ContrastNode());
-    });
-
-    document.getElementById("add-saturation").addEventListener("click", function() {
-        filterList.appendFilterNode(new SaturationNode());
     });
 
     document.getElementById("add-color-balance").addEventListener("click", function() {
         filterList.appendFilterNode(new ColorBalanceNode());
     });
 
-    document.getElementById("add-temperature").addEventListener("click", function() {
-        filterList.appendFilterNode(new TemperatureNode());
+    document.getElementById("add-contrast").addEventListener("click", function() {
+        filterList.appendFilterNode(new ContrastNode());
+    });
+
+    document.getElementById("add-exposure").addEventListener("click", function() {
+        filterList.appendFilterNode(new ExposureNode());
     });
 
     document.getElementById("add-fade").addEventListener("click", function() {
@@ -56,6 +44,22 @@ function main() {
     document.getElementById("add-grain").addEventListener("click", function() {
         filterList.appendFilterNode(new GrainNode());
     });
+
+    document.getElementById("add-grayscale").addEventListener("click", function() {
+        filterList.appendFilterNode(new GrayscaleNode());
+    });
+
+    document.getElementById("add-invert").addEventListener("click", function() {
+        filterList.appendFilterNode(new InvertNode());
+    });
+
+    document.getElementById("add-saturation").addEventListener("click", function() {
+        filterList.appendFilterNode(new SaturationNode());
+    });
+
+    document.getElementById("add-temperature").addEventListener("click", function() {
+        filterList.appendFilterNode(new TemperatureNode());
+    }); 
 
     var downloadButton = document.getElementById("download");
     downloadButton.addEventListener("click", function() {

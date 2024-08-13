@@ -324,6 +324,34 @@ function ContrastNode() {
 
 ContrastNode.prototype = new FilterNode(new ContrastFilter());
 
+// ExposureNode
+
+function ExposureNode() {
+    this.loadView();
+    this.titleView.innerHTML = "Exposure";
+
+    // Create canvas
+    this.canvas = document.createElement("canvas");
+    this.contentView.appendChild(this.canvas);
+
+    // Add intensity control
+    var intensityRange = new RangeControl("Intensity", -1, 1, 0.01, this.filter.intensity, function() {
+        this.filter.intensity = parseFloat(intensityRange.getValue());
+        this.update();
+    }.bind(this));
+    this.settingsView.appendChild(intensityRange.view);
+
+    // Insert separator
+    this.settingsView.appendChild(document.createElement("hr"));
+
+    // Add description
+    var description = document.createElement("p");
+    description.innerHTML = "Exposure filter adjusts the brightness of the image.";
+    this.settingsView.appendChild(description);
+}
+
+ExposureNode.prototype = new FilterNode(new ExposureFilter());
+
 // FadeNode
 
 function FadeNode() {
