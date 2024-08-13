@@ -226,42 +226,6 @@ FilterNode.prototype.invalidate = function() {
     }
 }
 
-// GrayscaleNode
-
-function GrayscaleNode() {
-    this.loadView();
-    this.titleView.innerHTML = "Grayscale";
-
-    // Create canvas
-    this.canvas = document.createElement("canvas");
-    this.contentView.appendChild(this.canvas);
-
-    // Add description
-    var description = document.createElement("p");
-    description.innerHTML = "Grayscale filter converts your image into black and white.";
-    this.settingsView.appendChild(description);
-}
-
-GrayscaleNode.prototype = new FilterNode(new GrayscaleFilter());
-
-// InvertNode
-
-function InvertNode() {
-    this.loadView();
-    this.titleView.innerHTML = "Invert";
-
-    // Create canvas
-    this.canvas = document.createElement("canvas");
-    this.contentView.appendChild(this.canvas);
-
-    // Add description
-    var description = document.createElement("p");
-    description.innerHTML = "Invert filter inverts colors of your image.";
-    this.settingsView.appendChild(description);
-}
-
-InvertNode.prototype = new FilterNode(new InvertFilter());
-
 // BrightnessNode
 
 function BrightnessNode() {
@@ -273,7 +237,7 @@ function BrightnessNode() {
     this.contentView.appendChild(this.canvas);
 
     // Add intensity control
-    var intensityRange = new RangeControl("Intensity", -128, 128, 1, this.filter.intensity, function() {
+    var intensityRange = new RangeControl("Intensity", -0.5, 0.5, 0.01, this.filter.intensity, function() {
         this.filter.intensity = parseFloat(intensityRange.getValue());
         this.update();
     }.bind(this));
@@ -289,62 +253,6 @@ function BrightnessNode() {
 }
 
 BrightnessNode.prototype = new FilterNode(new BrightnessFilter());
-
-// ContrastNode
-
-function ContrastNode() {
-    this.loadView();
-    this.titleView.innerHTML = "Contrast";
-
-    // Create canvas
-    this.canvas = document.createElement("canvas");
-    this.contentView.appendChild(this.canvas);
-
-    // Add intensity control
-    var intensityRange = new RangeControl("Intensity", 0.5, 2, 0.015, this.filter.intensity, function() {
-        this.filter.intensity = parseFloat(intensityRange.getValue());
-        this.update();
-    }.bind(this));
-    this.settingsView.appendChild(intensityRange.view);
-
-    // Insert separator
-    this.settingsView.appendChild(document.createElement("hr"));
-
-    // Add description
-    var description = document.createElement("p");
-    description.innerHTML = "Contrast filter increases the color range of your image.";
-    this.settingsView.appendChild(description);
-}
-
-ContrastNode.prototype = new FilterNode(new ContrastFilter());
-
-// SaturationNode
-
-function SaturationNode() {
-    this.loadView();
-    this.titleView.innerHTML = "Saturation";
-
-    // Create canvas
-    this.canvas = document.createElement("canvas");
-    this.contentView.appendChild(this.canvas);
-
-    // Add intensity control
-    var intensityRange = new RangeControl("Intensity", 0, 2, 0.02, this.filter.intensity, function() {
-        this.filter.intensity = parseFloat(intensityRange.getValue());
-        this.update();
-    }.bind(this));
-    this.settingsView.appendChild(intensityRange.view);
-
-    // Insert separator
-    this.settingsView.appendChild(document.createElement("hr"));
-
-    // Add description
-    var description = document.createElement("p");
-    description.innerHTML = "Saturation filter makes your image juicy.";
-    this.settingsView.appendChild(description);
-}
-
-SaturationNode.prototype = new FilterNode(new SaturationFilter());
 
 // ColorBalanceNode
 
@@ -388,35 +296,33 @@ function ColorBalanceNode() {
 
 ColorBalanceNode.prototype = new FilterNode(new ColorBalanceFilter());
 
-// TemperatureNode
+// ContrastNode
 
-function TemperatureNode() {
+function ContrastNode() {
     this.loadView();
-    this.titleView.innerHTML = "Temperature";
+    this.titleView.innerHTML = "Contrast";
 
     // Create canvas
     this.canvas = document.createElement("canvas");
     this.contentView.appendChild(this.canvas);
 
-    // title, min, max, step, value, onChange
-
-    // Add warmth control
-    var warmthRange = new RangeControl("Warmth", -100, 100, 1, this.filter.warmth, function() {
-        this.filter.warmth = parseFloat(warmthRange.getValue());
+    // Add intensity control
+    var intensityRange = new RangeControl("Intensity", 0.5, 2, 0.015, this.filter.intensity, function() {
+        this.filter.intensity = parseFloat(intensityRange.getValue());
         this.update();
     }.bind(this));
-    this.settingsView.appendChild(warmthRange.view);
+    this.settingsView.appendChild(intensityRange.view);
 
     // Insert separator
     this.settingsView.appendChild(document.createElement("hr"));
 
     // Add description
     var description = document.createElement("p");
-    description.innerHTML = "Temperature filter adjusts warmth of your image.";
+    description.innerHTML = "Contrast filter increases the color range of your image.";
     this.settingsView.appendChild(description);
 }
 
-TemperatureNode.prototype = new FilterNode(new TemperatureFilter());
+ContrastNode.prototype = new FilterNode(new ContrastFilter());
 
 // FadeNode
 
@@ -487,3 +393,97 @@ function GrainNode() {
 }
 
 GrainNode.prototype = new FilterNode(new GrainFilter());
+
+// GrayscaleNode
+
+function GrayscaleNode() {
+    this.loadView();
+    this.titleView.innerHTML = "Grayscale";
+
+    // Create canvas
+    this.canvas = document.createElement("canvas");
+    this.contentView.appendChild(this.canvas);
+
+    // Add description
+    var description = document.createElement("p");
+    description.innerHTML = "Grayscale filter converts your image into black and white.";
+    this.settingsView.appendChild(description);
+}
+
+GrayscaleNode.prototype = new FilterNode(new GrayscaleFilter());
+
+// InvertNode
+
+function InvertNode() {
+    this.loadView();
+    this.titleView.innerHTML = "Invert";
+
+    // Create canvas
+    this.canvas = document.createElement("canvas");
+    this.contentView.appendChild(this.canvas);
+
+    // Add description
+    var description = document.createElement("p");
+    description.innerHTML = "Invert filter inverts colors of your image.";
+    this.settingsView.appendChild(description);
+}
+
+InvertNode.prototype = new FilterNode(new InvertFilter());
+
+// SaturationNode
+
+function SaturationNode() {
+    this.loadView();
+    this.titleView.innerHTML = "Saturation";
+
+    // Create canvas
+    this.canvas = document.createElement("canvas");
+    this.contentView.appendChild(this.canvas);
+
+    // Add intensity control
+    var intensityRange = new RangeControl("Intensity", 0, 2, 0.02, this.filter.intensity, function() {
+        this.filter.intensity = parseFloat(intensityRange.getValue());
+        this.update();
+    }.bind(this));
+    this.settingsView.appendChild(intensityRange.view);
+
+    // Insert separator
+    this.settingsView.appendChild(document.createElement("hr"));
+
+    // Add description
+    var description = document.createElement("p");
+    description.innerHTML = "Saturation filter makes your image juicy.";
+    this.settingsView.appendChild(description);
+}
+
+SaturationNode.prototype = new FilterNode(new SaturationFilter());
+
+// TemperatureNode
+
+function TemperatureNode() {
+    this.loadView();
+    this.titleView.innerHTML = "Temperature";
+
+    // Create canvas
+    this.canvas = document.createElement("canvas");
+    this.contentView.appendChild(this.canvas);
+
+    // title, min, max, step, value, onChange
+
+    // Add warmth control
+    var warmthRange = new RangeControl("Warmth", -100, 100, 1, this.filter.warmth, function() {
+        this.filter.warmth = parseFloat(warmthRange.getValue());
+        this.update();
+    }.bind(this));
+    this.settingsView.appendChild(warmthRange.view);
+
+    // Insert separator
+    this.settingsView.appendChild(document.createElement("hr"));
+
+    // Add description
+    var description = document.createElement("p");
+    description.innerHTML = "Temperature filter adjusts warmth of your image.";
+    this.settingsView.appendChild(description);
+}
+
+TemperatureNode.prototype = new FilterNode(new TemperatureFilter());
