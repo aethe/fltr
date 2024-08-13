@@ -59,31 +59,6 @@ BasicFilter.prototype.process = function(imageData) {
 
 BasicFilter.prototype.processPixel = function(color) { }
 
-// GrayscaleFilter
-
-function GrayscaleFilter() { }
-
-GrayscaleFilter.prototype = new BasicFilter();
-
-GrayscaleFilter.prototype.processPixel = function(color) {
-    var relativeLuminance = color.getRelativeLuminance();
-    color.red = relativeLuminance;
-    color.green = relativeLuminance;
-    color.blue = relativeLuminance;
-}
-
-// InvertFilter
-
-function InvertFilter() { }
-
-InvertFilter.prototype = new BasicFilter();
-
-InvertFilter.prototype.processPixel = function(color) {
-    color.red = 255 - color.red;
-    color.green = 255 - color.green;
-    color.blue = 255 - color.blue;
-}
-
 // BrightnessFilter
 
 function BrightnessFilter() {
@@ -96,35 +71,6 @@ BrightnessFilter.prototype.processPixel = function(color) {
     color.red = color.red + this.intensity;
     color.green = color.green + this.intensity;
     color.blue = color.blue + this.intensity;
-}
-
-// ContrastFilter
-
-function ContrastFilter() {
-    this.intensity = 1;
-}
-
-ContrastFilter.prototype = new BasicFilter();
-
-ContrastFilter.prototype.processPixel = function(color) {
-    color.red = (color.red - 128) * this.intensity + 128;
-    color.green = (color.green - 128) * this.intensity + 128;
-    color.blue = (color.blue - 128) * this.intensity + 128;
-}
-
-// SaturationFilter
-
-function SaturationFilter() {
-    this.intensity = 1;
-}
-
-SaturationFilter.prototype = new BasicFilter();
-
-SaturationFilter.prototype.processPixel = function(color) {
-    var relativeLuminance = color.getRelativeLuminance();
-    color.red = relativeLuminance + (color.red - relativeLuminance) * this.intensity;
-    color.green = relativeLuminance + (color.green - relativeLuminance) * this.intensity;
-    color.blue = relativeLuminance + (color.blue - relativeLuminance) * this.intensity;
 }
 
 // ColorBalanceFilter
@@ -143,17 +89,18 @@ ColorBalanceFilter.prototype.processPixel = function(color) {
     color.blue = color.blue * this.blueIntensity;
 }
 
-// TemperatureFilter
+// ContrastFilter
 
-function TemperatureFilter() {
-    this.warmth = 0;
+function ContrastFilter() {
+    this.intensity = 1;
 }
 
-TemperatureFilter.prototype = new BasicFilter();
+ContrastFilter.prototype = new BasicFilter();
 
-TemperatureFilter.prototype.processPixel = function(color) {
-    color.red = color.red + this.warmth;
-    color.blue = color.blue - this.warmth;
+ContrastFilter.prototype.processPixel = function(color) {
+    color.red = (color.red - 128) * this.intensity + 128;
+    color.green = (color.green - 128) * this.intensity + 128;
+    color.blue = (color.blue - 128) * this.intensity + 128;
 }
 
 // FadeFilter
@@ -198,4 +145,57 @@ GrainFilter.prototype.processPixel = function(color) {
     color.red = color.red + modifier;
     color.green = color.green + modifier;
     color.blue = color.blue + modifier;
+}
+
+// GrayscaleFilter
+
+function GrayscaleFilter() { }
+
+GrayscaleFilter.prototype = new BasicFilter();
+
+GrayscaleFilter.prototype.processPixel = function(color) {
+    var relativeLuminance = color.getRelativeLuminance();
+    color.red = relativeLuminance;
+    color.green = relativeLuminance;
+    color.blue = relativeLuminance;
+}
+
+// InvertFilter
+
+function InvertFilter() { }
+
+InvertFilter.prototype = new BasicFilter();
+
+InvertFilter.prototype.processPixel = function(color) {
+    color.red = 255 - color.red;
+    color.green = 255 - color.green;
+    color.blue = 255 - color.blue;
+}
+
+// SaturationFilter
+
+function SaturationFilter() {
+    this.intensity = 1;
+}
+
+SaturationFilter.prototype = new BasicFilter();
+
+SaturationFilter.prototype.processPixel = function(color) {
+    var relativeLuminance = color.getRelativeLuminance();
+    color.red = relativeLuminance + (color.red - relativeLuminance) * this.intensity;
+    color.green = relativeLuminance + (color.green - relativeLuminance) * this.intensity;
+    color.blue = relativeLuminance + (color.blue - relativeLuminance) * this.intensity;
+}
+
+// TemperatureFilter
+
+function TemperatureFilter() {
+    this.warmth = 0;
+}
+
+TemperatureFilter.prototype = new BasicFilter();
+
+TemperatureFilter.prototype.processPixel = function(color) {
+    color.red = color.red + this.warmth;
+    color.blue = color.blue - this.warmth;
 }
